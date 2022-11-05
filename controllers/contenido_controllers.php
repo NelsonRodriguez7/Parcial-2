@@ -2,9 +2,7 @@
     require_once("models/productos_models.php");
     class contenido_controllers{
         public static function contenido(){
-            if(isset($_COOKIE["compra"])){
-                header("location:index.php?c=".seg::codificar("pagina_compra")."&m=".seg::codificar("pagina_compra"));
-            }
+            setcookie("compra","",time()-40);
             $title = "Productos | Parcial 2";
             require_once("views/template/header.php");
             require_once("views/template/navbar.php");

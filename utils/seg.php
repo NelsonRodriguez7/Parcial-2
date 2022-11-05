@@ -17,6 +17,7 @@
         }
 
         public static function validaSesion($token){
+            
             if(!isset($_SESSION["token"]) || !hash_equals($token,$_SESSION["token"]))
                 return false;
             return true;

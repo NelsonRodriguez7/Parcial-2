@@ -35,7 +35,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         
-                        <a href="<?php echo "index.php?c=".seg::codificar("login")."&m=".seg::codificar("login") ?>">
+                        <a href="<?php echo "index.php?c=".seg::codificar("login")."&m=".seg::codificar("login"); setcookie("compra", $id_comparacion, time()+40) ?>">
                         <button type="button" class="btn btn-primary">
                             Iniciar Sesion
                         </button>

@@ -17,7 +17,13 @@
 
         public static function validar() {
             if($_POST){
-               
+                $token= $_POST["token"];
+                $_SESSION["token"] = $token;
+
+                if (!isset($token) || !seg::validaSesion($token)) {
+                    echo "Acceso restringido";
+                    exit();
+                }
             $obj = new usuario_informacion($_POST["txtCorreo_Usuario"],$_POST["txtContraseña_Usuario"],"","");
             $resultado = $obj->valida_usuario();
             if(count($resultado)>0){
@@ -26,6 +32,9 @@
                 if(isset($_POST["ckrecordar"])){
                     setcookie("correo",seg::codificar($resultado["correo"]),time()+60);
                     setcookie("nombre",seg::codificar($resultado["nombre"]),time()+60);
+                }
+                if(isset($_COOKIE["compra"])){
+                    header("location:index.php?c=".seg::codificar("pagina_dinamica")."&m=".seg::codificar("pagina_dinamica")."&i=".seg::codificar($_COOKIE["compra"]));
                 }
                 call_user_func("contenido_controllers::contenido");
             }else
@@ -37,6 +46,7 @@
             session_destroy();
             setcookie("correo",$resultado2["correo"],time()-60);
             setcookie("nombre",$resultado3["nombre"],time()-60);
+            setcookie("compra","",time()-40);
             header("location:index.php");
         }
     }

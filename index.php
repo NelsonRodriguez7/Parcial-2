@@ -5,6 +5,8 @@
     require_once("controllers/pagina_dinamica_controllers.php");
     require_once("controllers/pagina_compra_controllers.php");
     require_once("controllers/login_controllers.php");
+    require_once("controllers/busqueda_controllers.php");
+    
     require_once("utils/seg.php");
 
     if (count($_GET)==0)
@@ -13,6 +15,7 @@
         $controlador = seg::decodificar($_GET["c"]);
         $metodo = seg::decodificar($_GET["m"]);
         call_user_func($controlador."_controllers::".$metodo);
+        
     }
 ?>
     

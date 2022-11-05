@@ -40,7 +40,7 @@
         <?php } ?>
         <?php if(isset($_SESSION["correo"])) {?>
           <li class="nav-item">
-            <a class="nav-link" href="#">Buscar</a>
+            <a class="nav-link" href="<?php echo "index.php?c=".seg::codificar("busqueda")."&m=".seg::codificar("busqueda") ?>">Buscar</a>
           </li>
         <?php }else{?>
         
