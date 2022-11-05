@@ -12,14 +12,15 @@
 
         public static function buscar_producto_mostrar(){
             if($_POST){
-                $token= $_POST["token"];
+                $token= filter_var($_POST["token"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $_SESSION["token"] = $token;
 
                 if (!isset($token) || !seg::validaSesion($token)) {
                     echo "Acceso restringido";
                     exit();
                 }
-                $obj = new productos_models($_POST["txtBuscar"],"","","","","");
+                $buscar_id= filter_var($_POST["txtBuscar"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $obj = new productos_models($buscar_id,"","","","","");
                 $buscar = $obj->valida_productos();
                 if(count($buscar)>0){
                     $mostrar = $buscar["id_producto"];   

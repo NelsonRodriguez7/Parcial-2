@@ -17,14 +17,17 @@
 
         public static function validar() {
             if($_POST){
-                $token= $_POST["token"];
+                $token= filter_var($_POST["token"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $_SESSION["token"] = $token;
 
                 if (!isset($token) || !seg::validaSesion($token)) {
                     echo "Acceso restringido";
                     exit();
                 }
-            $obj = new usuario_informacion($_POST["txtCorreo_Usuario"],$_POST["txtContraseña_Usuario"],"","");
+
+            $usuario= filter_var($_POST["txtCorreo_Usuario"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $Contra= filter_var($_POST["txtContraseña_Usuario"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $obj = new usuario_informacion($usuario,$Contra,"","");
             $resultado = $obj->valida_usuario();
             if(count($resultado)>0){
                 $_SESSION["correo"] = $resultado["correo"];
