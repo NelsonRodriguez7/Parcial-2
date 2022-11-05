@@ -47,8 +47,8 @@
 
         public static function cerrar_sesion(){
             session_destroy();
-            setcookie("correo",$resultado2["correo"],time()-60);
-            setcookie("nombre",$resultado3["nombre"],time()-60);
+            setcookie("correo","",time()-60);
+            setcookie("nombre","",time()-60);
             setcookie("compra","",time()-40);
             header("location:index.php");
         }
