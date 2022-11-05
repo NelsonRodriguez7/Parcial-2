@@ -3,6 +3,7 @@
     require_once("controllers/bienvenido_controllers.php");
     require_once("controllers/contenido_controllers.php");
     require_once("controllers/pagina_dinamica_controllers.php");
+    require_once("controllers/pagina_compra_controllers.php");
     require_once("controllers/login_controllers.php");
     require_once("utils/seg.php");
 

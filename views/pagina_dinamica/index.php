@@ -10,13 +10,17 @@
         Cantidad Disponible Actualmente: <?php echo $tabla->getCantidad_en_existencia()?>
         </p>
         <p class="card-text">
-        Precio De Compra: <?php echo $tabla->getPrecio_venta()?>
+        Precio De Compra: $<?php echo $tabla->getPrecio_venta()?>
         </p>
+        <?php if(isset($_SESSION["correo"])) {?>
+        <a href="<?php echo "index.php?c=".seg::codificar("pagina_compra")."&m=".seg::codificar("pagina_compra")."&i=".seg::codificar($id_comparacion) ?>">
+        <button type="button" class="btn btn-success">Comprar</button>
+        </a>
+        <?php }else{?>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Comprar
         </button>
-        
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered      ">
@@ -30,11 +34,17 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <a href="<?php echo "index.php?c=".seg::codificar("login")."&m=".seg::codificar("login") ?>"><button type="button" class="btn btn-primary">Iniciar Sesion</button></a>
+                        
+                        <a href="<?php echo "index.php?c=".seg::codificar("login")."&m=".seg::codificar("login") ?>">
+                        <button type="button" class="btn btn-primary">
+                            Iniciar Sesion
+                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+        <?php } ?>
         <p class="card-text">
         <small class="text-muted">Imagen referente - el precio no incluye ITBMS</small>
         </p>

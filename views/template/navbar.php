@@ -31,54 +31,30 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo "index.php?c=".seg::codificar("contenido")."&m=".seg::codificar("contenido") ?>">Home</a>
         </li>
-        <li class="nav-item">
+        <?php if(isset($_SESSION["correo"])) {?>
+        
+        <?php }else{?>
+          <li class="nav-item">
           <a class="nav-link" href="<?php echo "index.php?c=".seg::codificar("login")."&m=".seg::codificar("login") ?>">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
+          </li>
+        <?php } ?>
+        <?php if(isset($_SESSION["correo"])) {?>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Buscar</a>
+          </li>
+        <?php }else{?>
+        
+        <?php } ?>
       </ul>
       <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->
 
     <!-- Right elements -->
-    <div class="d-flex align-items-center">
-      <!-- Icon -->
-      <a class="text-reset me-3" href="#">
-        <i class="fas fa-shopping-cart"></i>
-      </a>
-
-      <!-- Notifications -->
-      <div class="dropdown">
-        <a
-          class="text-reset me-3 dropdown-toggle hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fas fa-bell"></i>
-          <span class="badge rounded-pill badge-notification bg-danger">1</span>
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-        >
-          <li>
-            <a class="dropdown-item" href="#">Some news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Another news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </li>
-        </ul>
-      </div>
+    
       <!-- Avatar -->
-      <div class="dropdown">
+      <?php if(isset($_SESSION["correo"])) {?>
+        <div class="dropdown">
         <a
           class="dropdown-toggle d-flex align-items-center hidden-arrow"
           href="#"
@@ -100,16 +76,19 @@
           aria-labelledby="navbarDropdownMenuAvatar"
         >
           <li>
-            <a class="dropdown-item" href="#">My profile</a>
+            <a class="dropdown-item" href="#">Mi Perfil</a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Configuracion</a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="<?php echo "index.php?c=".seg::codificar("login")."&m=".seg::codificar("cerrar_sesion") ?>">Cerrar Sesion</a>
           </li>
         </ul>
       </div>
+        <?php }else{?>
+      
+      <?php } ?>
     </div>
     <!-- Right elements -->
   </div>

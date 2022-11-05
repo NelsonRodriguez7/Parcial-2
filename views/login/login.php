@@ -4,16 +4,22 @@
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">LOGIN</div>
                 <div class="card-body text-primary">
-                <form>
+                
+                <?php if($msg != "") {?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo seg::decodificar($msg) ?>
+                </div>
+                <?php }?>
+                <form action="<?php echo "index.php?c=".seg::codificar("login")."&m=".seg::codificar("validar") ?>" method="post">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="form2Example1" class="form-control" />
+                        <input type="email" id="form2Example1" class="form-control" name="txtCorreo_Usuario"/>
                         <label class="form-label" for="form2Example1">Correo</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" id="form2Example2" class="form-control" />
+                        <input type="password" id="form2Example2" class="form-control" name="txtContraseña_Usuario"/>
                         <label class="form-label" for="form2Example2">Password</label>
                     </div>
 
@@ -22,14 +28,14 @@
                         <div class="col d-flex justify-content-center">
                         <!-- Checkbox -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
+                            <input class="form-check-input" name="ckrecordar" type="checkbox" value="" id="form2Example34" checked />
                             <label class="form-check-label" for="form2Example34"> Recuerdame </label>
                         </div>
                         </div>
 
                         
                     </div>
-
+                    <input type="hidden" value="<?php echo seg::getToken() ?>" name="token"/>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary btn-block mb-4">iniciar Sesion</button>
 
